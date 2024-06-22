@@ -1,4 +1,4 @@
-// import path from "path";
+import path from "path";
 import "dotenv/config";
 import express from 'express';
 import authRoutes from './routes/authRoutes.js';
@@ -8,7 +8,7 @@ import cookieParser from "cookie-parser";
 import connectDb from "./db/connectDB.js";
 import { app, server } from "./socket/socket.js";
 
-// const __dirname = path.resolve();
+const __dirname = path.resolve();
 // import cors from 'cors';
 
 // creating app
@@ -23,11 +23,11 @@ app.use('/api/auth',authRoutes);
 app.use('/api/message',messageRoutes);
 app.use('/api/user',userRoutes);
 
-// app.use(express.static(path.join(__dirname,"/frontedn/dist")));
+app.use(express.static(path.join(__dirname,"/frontend/dist")));
 
-// app.get("*", (req,res)=>{
-//     res.sendFile(path.join(__dirname,"frontend","dist","index.html"));
-// })
+app.get("*", (req,res)=>{
+    res.sendFile(path.join(__dirname,"frontend","dist","index.html"));
+})
  
 
 connectDb().then(()=>{
